@@ -7,8 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="${pageContext.request.contextPath}/addClient.jsp">开户</a><br>
-	<a href="${pageContext.request.contextPath}/transferMoney.jsp">转账</a><br>
-	<a href="${pageContext.request.contextPath}/teller/clients.do">富豪</a><br>
+	<form action="${pageContext.request.contextPath}/teller/transferMoney.do" method="post" id="adminform">
+		 	转出账号：<input type="text" name="fromeName"><br/> 
+		 	转入账号：<input type="text" name="toName"><br/>
+		           金额：<input type="text" name="money"><br/> 
+		 	<input type="submit" value="验证">  
+	</form>
 </body>
 </html>

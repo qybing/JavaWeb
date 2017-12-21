@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="${pageContext.request.contextPath}/addClient.jsp">开户</a><br>
-	<a href="${pageContext.request.contextPath}/transferMoney.jsp">转账</a><br>
-	<a href="${pageContext.request.contextPath}/teller/clients.do">富豪</a><br>
+asdaaaaaaaaaaaaaaaaaaaaaaa
 </body>
 </html>

@@ -1,7 +1,7 @@
 package com.bank.bean;
 
 public class Teller {
-
+	private int id;
 	private String teller_id;
 	private String teller_name;
 	private String teller_ps;
@@ -21,6 +21,14 @@ public class Teller {
 
 	public String getTeller_id() {
 		return teller_id;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public void setTeller_id(String teller_id) {
@@ -53,8 +61,8 @@ public class Teller {
 
 	@Override
 	public String toString() {
-		return "Teller [teller_id=" + teller_id + ", teller_name=" + teller_name + ", teller_ps=" + teller_ps
-				+ ", subbank_id=" + subbank_id + "]";
+		return "Teller [id=" + id + ", teller_id=" + teller_id + ", teller_name=" + teller_name + ", teller_ps="
+				+ teller_ps + ", subbank_id=" + subbank_id + "]";
 	}
 
 }

@@ -33,10 +33,10 @@ public class TellerServiceImpl implements TellerService {
 	}
 
 	@Override
-	public void transferMoney(String A, String B, Double money) {
-		tellerdao.updateAmonyById(A,1000d);
-		int a = 1/0;
-		tellerdao.updateBmonyById(B,1000d);
+	public void transferMoney(String fromName, String toName, Double money) {
+		tellerdao.updateAmonyById(fromName,money);
+	/*	int a = 1/0;*/
+		tellerdao.updateBmonyById(toName,money);
 		System.out.println("转钱成功");
 		
 	}
@@ -44,6 +44,17 @@ public class TellerServiceImpl implements TellerService {
 	@Override
 	public List<Client> getAll() {
 		
+		return clientDao.selectAllClients();
+	}
+
+	@Override
+	public void openAccount(Client client) {
+		clientDao.insertClient(client);	
+	}
+
+	@Override
+	public List<Client> findAllClients() {
+		// TODO Auto-generated method stub
 		return clientDao.selectAllClients();
 	}
 

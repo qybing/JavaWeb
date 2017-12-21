@@ -1,7 +1,7 @@
 package com.bank.bean;
 
 public class Client {
-
+	private int id;
 	private String client_id;
 	private String client_name;
 	private String client_phone;
@@ -19,6 +19,14 @@ public class Client {
 		this.client_phone = client_phone;
 		this.client_money = client_money;
 		this.client_ps = client_ps;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getClient_ps() {
@@ -63,8 +71,8 @@ public class Client {
 
 	@Override
 	public String toString() {
-		return "Client [client_id=" + client_id + ", client_name=" + client_name + ", client_phone=" + client_phone
-				+ ", client_money=" + client_money + ", client_ps=" + client_ps + "]";
+		return "Client [id=" + id + ", client_id=" + client_id + ", client_name=" + client_name + ", client_phone="
+				+ client_phone + ", client_money=" + client_money + ", client_ps=" + client_ps + "]";
 	}
 
 }

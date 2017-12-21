@@ -5,6 +5,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <select id="selectAllClients" resultType="Client">
 		select * from  client
   </select>
+  
+  <insert id="insertClient">
+  	insert into client(client_id,client_name,client_phone,client_money,client_ps) values(#{client_id},#{client_name},#{client_phone},#{client_money},#{client_ps})
+  </insert>
 
 
 

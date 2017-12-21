@@ -67,7 +67,7 @@
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="transfer*" read-only="true"/>
-			<tx:method name="test01*" read-only="true"/>
+
 		</tx:attributes>
 	</tx:advice>
 

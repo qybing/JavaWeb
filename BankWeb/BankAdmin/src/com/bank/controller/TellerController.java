@@ -1,19 +1,20 @@
 package com.bank.controller;
 
-import java.io.IOException;
+
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -36,12 +37,14 @@ public class TellerController {
 	}
 	
 	@RequestMapping(value="/login")
-	public ModelAndView login(@RequestParam(name="name") String teller_id
-			,@RequestParam(name="password") String password) {
+	public ModelAndView login(@RequestParam(name="username") String teller_id
+			,@RequestParam(name="password") String password,
+			HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView();
-		
+		System.out.println("地址"+req.getServletPath());
 		Teller teller = tellerService.teller_login(teller_id,password);
 		mv.addObject("teller", teller);
+		req.getSession().setAttribute("teller", teller);
 		if(teller != null){
 			mv.setViewName("main");
 		}
@@ -51,14 +54,19 @@ public class TellerController {
 		return mv;	
 	}
 	
+	@RequestMapping("/openAccount")
+	public String openAccount(Client client) {
+		tellerService.openAccount(client);
+		return "main";
+	}
 	
 	@RequestMapping(value="/transferMoney")
-	public ModelAndView transferMoney(HttpServletRequest req,
-			HttpServletResponse res,String A,String B, Double money) {
+	public String transferMoney(HttpServletRequest req,
+			HttpServletResponse res,String fromeName,String toName, Double money) {
 		ModelAndView mv = new ModelAndView();
-		tellerService.transferMoney(A,B,money);
-		mv.setViewName("redirect:/error.jsp");
-		return mv;	
+		tellerService.transferMoney(fromeName,toName,money);
+	/*	mv.setViewName("redirect:/error.jsp");*/
+		return "main";	
 	}
 	
 	@RequestMapping(value="/clients")
@@ -67,7 +75,9 @@ public class TellerController {
 		ModelAndView mv = new ModelAndView();
 		//查询之前传入页码pn,1指代的是一页显示的记录条数
 		PageHelper.startPage(2, 2);
-		List<Client> clients = tellerService.getAll();
+		List<Client> clients = tellerService.findAllClients();
+		List<Client> clients1 = tellerService.findAllClients();
+		mv.addObject("clients1", clients1);
 		//使用PageInfo包装查询的结果，只需将PageInfo交给界面就行了
 		//封装了更详细的分页信息，包括我们查出来的数据
 		PageInfo page = new PageInfo(clients,2);

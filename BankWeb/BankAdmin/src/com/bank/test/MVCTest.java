@@ -38,7 +38,7 @@ public class MVCTest {
 	@Test
 	public void testPage() throws Exception {
 		//模拟请求拿到返回值
-		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/teller/clients.do")
+		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("teller/clients.do")
 				.param("pn", "1")).andReturn();
 		//请求成功以后，请求域会有pageinfo
 		MockHttpServletRequest request = result.getRequest();
