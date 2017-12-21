@@ -7,7 +7,6 @@ public class Client {
 	private String client_phone;
 	private Double client_money;
 	private String client_ps;
-
 	public Client() {
 		super();
 	}

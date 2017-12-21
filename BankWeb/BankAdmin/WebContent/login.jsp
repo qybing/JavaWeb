@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>管理员登录界面</title>
-<script type="text/javascript" src="js/js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="static/js/jquery-3.2.1.js"></script>
 <link rel="stylesheet" type="text/css" href="js/css/bootstrap.css" >
 <script type="text/javascript" src="js/js/bootstrap.bundle.js"></script>
 <script type="text/javascript" src="js/js/bootstrap.js"></script>

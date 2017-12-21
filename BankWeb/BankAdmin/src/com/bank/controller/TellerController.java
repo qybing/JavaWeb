@@ -74,7 +74,7 @@ public class TellerController {
 			Model model) {
 		ModelAndView mv = new ModelAndView();
 		//查询之前传入页码pn,1指代的是一页显示的记录条数
-		PageHelper.startPage(2, 2);
+		PageHelper.startPage(pn, 2);
 		List<Client> clients = tellerService.findAllClients();
 		List<Client> clients1 = tellerService.findAllClients();
 		mv.addObject("clients1", clients1);
@@ -82,11 +82,13 @@ public class TellerController {
 		//封装了更详细的分页信息，包括我们查出来的数据
 		PageInfo page = new PageInfo(clients,2);
 		mv.addObject("PageInfo", page);
+		
 	/*	System.out.println(page.getPages());*/
 		List<Client> client = page.getList();
 		for (Client client2 : client) {
 			System.out.println(client2);
 		}
+		
 		model.addAttribute("PageInfo", page);
 		mv.setViewName("Client_list");
 		return mv; 
