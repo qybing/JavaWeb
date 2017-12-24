@@ -69,5 +69,10 @@ public class MyTest{
 			System.out.println(client);
 		}
 	}
+	@Test
+	public void test02() {
+		Client client = cdao.selectClientById(1);
+		System.out.println(client);
+	}
 	
 }

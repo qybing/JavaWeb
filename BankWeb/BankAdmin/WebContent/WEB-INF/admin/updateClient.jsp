@@ -30,35 +30,36 @@
 <body>
 	<div class="container">
 	欢迎${sessionScope.teller}<br>
-	 <form  class="form-horizontal" action="${pageContext.request.contextPath}/teller/openAccount.do" method="post" id="adminform">
+	 <form  class="form-horizontal" action="${pageContext.request.contextPath}/teller/updateClient.do" method="post" id="adminform">
+		<input type="hidden" name="id" class="form-control" id="inputEmail3" value="${client.id}">		
 		<div class="form-group">
 		    <label for="inputEmail3" class="col-sm-2 control-label">账号</label>
 		    <div class="col-sm-10">
-		      <input type="text" name="client_id" class="form-control" id="inputEmail3" placeholder="Email">
+		      <input type="text" name="client_id" class="form-control" id="inputEmail3" value="${client.client_id}">
 	    	</div>
   		</div>
   		<div class="form-group">
 		    <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
 		    <div class="col-sm-10">
-		      <input type="password" name="client_ps" class="form-control" id="inputPassword3" placeholder="Password">
+		      <input type="password" name="client_ps" class="form-control" id="inputPassword3" value="${client.client_ps}">
 		    </div>
   		</div>
   		<div class="form-group">
 		    <label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
 		    <div class="col-sm-10">
-		      <input type="text" name="client_name" class="form-control" id="inputEmail3" placeholder="Email">
+		      <input type="text" name="client_name" class="form-control" id="inputEmail3" value="${client.client_name}">
 	    	</div>
   		</div>
   		<div class="form-group">
 		    <label for="inputEmail3" class="col-sm-2 control-label">电话</label>
 		    <div class="col-sm-10">
-		      <input type="text" name="client_phone" class="form-control" id="inputEmail3" placeholder="Email">
+		      <input type="text" name="client_phone" class="form-control" id="inputEmail3" value="${client.client_phone}">
 	    	</div>
   		</div>
   		<div class="form-group">
 		    <label for="inputEmail3" class="col-sm-2 control-label">金额</label>
 		    <div class="col-sm-10">
-		      <input type="text" name="client_money" class="form-control" id="inputEmail3" placeholder="Email">
+		      <input type="text" name="client_money" class="form-control" id="inputEmail3" value="${client.client_money}">
 	    	</div>
   		</div>
   		<div class="row">
@@ -66,13 +67,6 @@
 			 <button type="submit" class="btn btn-primary btn-lg">提交</button>
 			 </div>	
 		</div>
-	<!-- 	 	
-		 	1：<input type="text" name="client_id"><br/> 
-		 	2：<input type="text" name="client_name"><br/>
-		    3：<input type="text" name="client_phone"><br/> 
-		 	4：<input type="text" name="client_money"><br/>
-		 	5：<input type="text" name="client_ps"><br/> 
-		 	<input type="submit" value="验证">   -->
 	</form>
 	</div>
 </body>

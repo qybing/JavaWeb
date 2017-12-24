@@ -9,7 +9,7 @@
 	pageContext.setAttribute("path", "http://localhost:8080/BankAdmin");
 	
 %>
-<script type="text/javascript" src="${path}/static/js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="${path}/static/js/jquery-3.2.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${path}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" >
 <script src="${path}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
@@ -37,7 +37,7 @@
 						<th>电话</th>
 						<th>操作</th>
 					</tr>
-					<c:forEach items="${PageInfo.list }" var="client">
+					<c:forEach items="${PageInfo.list}" var="client">
 					<tr>
 						<th>${ client.id}</th>
 						<th>${ client.client_name}</th>
@@ -46,32 +46,32 @@
 						<th>${ client.client_money}</th>
 						<th>${ client.client_phone}</th>
 						<th>
-						<button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>编辑</button>
+						<button class="btn btn-primary btn-sm" type="button" id="myButton" name="${client.id}" ><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>编辑</button>
 						<button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除</button>
 						</th>
 					</tr>
 					</c:forEach>
-				</table>
-				
+				</table>			
 				</div>
-			
 			</div>
 			<div class="row">
 				<!-- 分页文字信息 -->
 				<div class="col-md-6">
-					当前${PageInfo.pageNum}页,总共${PageInfo.pages}页,总${PageInfo.total}记录。
-				
+					当前${PageInfo.pageNum}页,总共${PageInfo.pages}页,总${PageInfo.total}记录
 				</div>
 				<!-- 分页条信息 -->
 				<div class="col-md-6">
 					<nav aria-label="Page navigation">
 						  <ul class="pagination">
-						   <li><a href="#">首页</a></li>
-						    <li>
-						      <a href="#" aria-label="Previous">
+						   <li><a href="${path}/teller/clients.do?pn=1">首页</a></li>
+						  <c:if test="${PageInfo.hasPreviousPage }">
+						  	<li>
+						      <a href="${path}/teller/clients.do?pn=${PageInfo.pageNum-1}" aria-label="Previous">
 						        <span aria-hidden="true">&laquo;</span>
 						      </a>
 						    </li>
+						  </c:if>
+						    
 						    <c:forEach items="${PageInfo.navigatepageNums }" var="page_Num">
 						    	<c:if test="${page_Num==PageInfo.pageNum}">
 						    		<li class="active"><a href="${path}/teller/clients.do?pn=${page_Num}">${page_Num}</a></li>
@@ -81,13 +81,16 @@
 						    	</c:if>
 						    	
 						    </c:forEach>
-						  
-						    <li>
-						      <a href="#" aria-label="Next">
-						        <span aria-hidden="true">&raquo;</span>
-						      </a>
-						    </li>
-						    <li><a href="#">末页</a></li>
+						    <li><a href="${path}/teller/clients.do?pn=${PageInfo.pages}">末页</a></li>
+						  	<c:if test="${PageInfo.hasNextPage }">
+							  	<li>
+							      <a href="${path}/teller/clients.do?pn=${PageInfo.pageNum+1}" aria-label="Next">
+							        <span aria-hidden="true">&raquo;</span>
+							      </a>
+							    </li>
+						    </c:if>
+						 
+						    
 						  </ul>
 					</nav>
 				
@@ -96,36 +99,12 @@
 			
 			</div>
 	</div>
-
-
-<%-- <button type="button" class="btn btn-primary">（首选项）Primary</button>
-		<table border="1" style="margin: 0 auto">
-		<tr>
-			<th>序列</th>
-			<th>名字</th>
-			<th>账号</th>
-			<th>密码</th>
-			<th>金额</th>
-			<th>电话</th>
-			<th colspan="2">操作</th>
-			
-		</tr>
-		<c:forEach items="${clients1}" var="client"> 
-		<tr>
-			<td>${ client.id}           </td>
-			<td>${ client.client_name}  </td>
-			<td>${ client.client_id}    </td>
-			<td>${ client.client_ps}    </td>
-			<td>${ client.client_money} </td>
-			<td>${ client.client_phone} </td>
-			<td><a href="${pageContext.request.contextPath}">编辑</a> </td>
-			<td><a href="#">删除</a> </td>
-		</tr>	
-		
-		
-		
-		</c:forEach>   
-		
-	</table> --%>
 </body>
+<script type="text/javascript">
+  $('button#myButton').click(function() {
+	  var id = parseInt($(this).attr("name"));
+	  var url = "findClientById.do?acc_id="+id;
+	  window.location.href = url;	
+})
+</script>
 </html>

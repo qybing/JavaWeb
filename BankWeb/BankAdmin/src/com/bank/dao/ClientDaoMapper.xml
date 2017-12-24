@@ -3,14 +3,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bank.dao.ClientDao">
   <select id="selectAllClients" resultType="Client">
-		select * from  client
+		select * from  client order by client_money desc
   </select>
   
   <insert id="insertClient">
   	insert into client(client_id,client_name,client_phone,client_money,client_ps) values(#{client_id},#{client_name},#{client_phone},#{client_money},#{client_ps})
   </insert>
 
+ <select id="selectClientById" resultType="Client">
+ 	select * from client where id=#{id}
+ 
+ </select>
+<update id="updataCleint">
+	update client set client_id=#{client_id},client_name=#{client_name},client_phone=#{client_phone}
+	,client_ps=#{client_ps},client_money=#{client_money} where id=#{id}
 
+</update>
 
 
 

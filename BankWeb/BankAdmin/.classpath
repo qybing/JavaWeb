@@ -8,7 +8,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/asm-4.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/cglib-3.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/com.springsource.com.mchange.v2.c3p0-0.9.1.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/com.springsource.org.aopalliance-1.0.0.jar"/>
@@ -35,12 +34,13 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-jdbc-4.2.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-orm-4.2.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-tx-4.2.1.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-web-4.2.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-web-4.2.1.RELEASE.jar" sourcepath="F:/JAVA 架包/Spring/spring-framework-4.2.1.RELEASE/libs/spring-web-4.2.1.RELEASE-sources.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-webmvc-4.2.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/standard-1.1.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-test-4.2.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jsqlparser-0.9.5.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/pagehelper-5.0.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/pagehelper-5.0.0.jar" sourcepath="F:/JAVA 架包/一些源码JAR/pagehelper-5.0.0-sources.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/asm-4.2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="build/classes"/>
