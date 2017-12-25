@@ -2,10 +2,11 @@ package com.bank.controller;
 
 
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
-
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bank.bean.Client;
 import com.bank.bean.Teller;
@@ -47,17 +49,17 @@ public class TellerController {
 	@RequestMapping(value="/login")
 	public ModelAndView login(@RequestParam(name="username") String teller_id
 			,@RequestParam(name="password") String password,
-			HttpServletRequest req) {
+			HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException {
 		ModelAndView mv = new ModelAndView();
-		System.out.println("地址"+req.getServletPath());
 		Teller teller = tellerService.teller_login(teller_id,password);
-		mv.addObject("teller", teller);
-		req.getSession().setAttribute("teller", teller);
 		if(teller != null){
-			mv.setViewName("main");
+			req.getSession().setAttribute("teller", teller);
+			mv.addObject("teller", teller);
+			mv.setViewName("admin/main");
 		}
 		else {
-			mv.setViewName("redirect:/error.jsp");
+			mv.addObject("error", "账号或密码错误");
+			mv.setViewName("forward:/login.jsp");
 		}
 		return mv;	
 	}
@@ -65,7 +67,7 @@ public class TellerController {
 	@RequestMapping(value="/openAccount",method=RequestMethod.POST)
 	public String openAccount(Client client) {
 		tellerService.openAccount(client);
-		return "main";
+		return "admin/main";
 	}
 	
 	@RequestMapping(value="/transferMoney")
@@ -73,24 +75,22 @@ public class TellerController {
 			HttpServletResponse res,String fromeName,String toName, Double money) {
 		
 		tellerService.transferMoney(fromeName,toName,money);
-	/*	mv.setViewName("redirect:/error.jsp");*/
-		return "main";	
+		return "admin/main";	
 	}
 	
 	@RequestMapping(value="/clients")
 	public ModelAndView getclients(@RequestParam(value="pn",defaultValue="1") Integer pn,
 			Model model) {
 		ModelAndView mv = new ModelAndView();
-		//查询之前传入页码pn,1指代的是一页显示的记录条数
+		//pn代表当前穿过来的页数，2指代的是当前页显示的记录条数
 		PageHelper.startPage(pn, 2);
 		List<Client> clients = tellerService.findAllClients();
 		mv.addObject("clients", clients);
-		//使用PageInfo包装查询的结果，只需将PageInfo交给界面就行了
-		//封装了更详细的分页信息，包括我们查出来的数据
+		//把所有查询得到的结果封装在pageInfo，3指代的是显示页数的导航
 		PageInfo page = new PageInfo(clients,3);
 		mv.addObject("PageInfo", page);	
 		model.addAttribute("PageInfo", page);
-		mv.setViewName("Client_list");
+		mv.setViewName("admin/Client_list");
 		return mv; 
 	}
 	
@@ -100,14 +100,14 @@ public class TellerController {
 		Integer id = Integer.valueOf(acc_id);
 		Client client = clientService.findClientById(id); 
 		model.addAttribute("client", client);
-		return "updateClient";
+		return "admin/updateClient";
 	}
 	
 	@RequestMapping("/updateClient")
 	public String updateClient(Client client) {
 		System.out.println(client);
 		clientService.updateClient(client);
-		return "Client_list";
+		return "admin/Client_list";
 	}
 	
 	

@@ -4,13 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%
-	pageContext.setAttribute("path", "http://localhost:8080/BankAdmin");
-	
-%>
+<%  
+	String path = request.getContextPath();  
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";  
+%> 
+<base href=" <%=basePath%>"> 
 <style type="text/css">
 	body{
-		background: url(${path}/images/ground.jpg) no-repeat;
+		background: url(images/ground.jpg) no-repeat;
 		background-repeat: no repeat;
 		background-size: 100% 100%;
 		background-attachment: fixed;
@@ -22,15 +23,15 @@
 
 
 </style>
-<script type="text/javascript" src="${path}/static/js/jquery-3.2.1.min.js"></script>
-<link rel="stylesheet" type="text/css" href="${path}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" >
-<script src="${path}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<title>Insert title here</title>
+<script type="text/javascript" src="static/js/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="static/bootstrap-3.3.7-dist/css/bootstrap.min.css" >
+<script src="static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<title>添加用户</title>
 </head>
 <body>
 	<div class="container">
 	欢迎${sessionScope.teller}<br>
-	 <form  class="form-horizontal" action="${pageContext.request.contextPath}/teller/openAccount.do" method="post" id="adminform">
+	 <form  class="form-horizontal" action="teller/openAccount.do" method="post" id="adminform">
 		<div class="form-group">
 		    <label for="inputEmail3" class="col-sm-2 control-label">账号</label>
 		    <div class="col-sm-10">

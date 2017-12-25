@@ -3,6 +3,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<%  
+	String path = request.getContextPath();  
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";  
+%> 
+<base href=" <%=basePath%>"> 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>管理员登录界面</title>
 <script type="text/javascript" src="static/js/jquery-3.2.1.js"></script>
@@ -44,6 +49,7 @@
 		 <form action="teller/login.do" method="post" id="adminform">
 		 	管理员用户名：<input type="text" name="username"><br/> 
 		 	管理员用户名：<input type="text" name="password"><br/> 
+		 	<br>${error}<br>
 		 	1周记住密码<input type="checkbox" name="remember">
 		 	<input type="submit" value="验证">
 		 </form>
@@ -52,6 +58,7 @@
     <form action="admin/login.do" method="post" id="customerform">
 	 	客户用户名：<input type="text" name="username"><br/> 
 	 	客户密码：  <input type="text" name="password"><br/> 
+	 	<br>${error}<br>
 	 	<input type="submit" value="验证">
  	</form>
   </div>
