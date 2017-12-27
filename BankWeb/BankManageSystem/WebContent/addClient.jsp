@@ -31,7 +31,8 @@
 <body>
 	<div class="container">
 	欢迎${sessionScope.teller}<br>
-	 <form  class="form-horizontal" action="teller/openAccount.do" method="post" id="adminform">
+	${error}<br>
+	 <form  class="form-horizontal" action="teller/openAccount.do" enctype="multipart/form-data" method="post" id="adminform">
 		<div class="form-group">
 		    <label for="inputEmail3" class="col-sm-2 control-label">账号</label>
 		    <div class="col-sm-10">
@@ -60,6 +61,12 @@
 		    <label for="inputEmail3" class="col-sm-2 control-label">金额</label>
 		    <div class="col-sm-10">
 		      <input type="text" name="client_money" class="form-control" id="inputEmail3" placeholder="Email">
+	    	</div>
+  		</div>
+  		<div class="form-group">
+		    <label for="inputEmail3" class="col-sm-2 control-label">头像请上传文件</label>
+		    <div class="col-sm-10">
+		      <input type="file" name="file" class="form-control" id="inputEmail3" placeholder="Email">
 	    	</div>
   		</div>
   		<div class="row">

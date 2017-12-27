@@ -71,4 +71,33 @@
 		</tx:attributes>
 	</tx:advice>
 
+
+
+
+	<!-- Kaptcha验证码生成器 -->
+<bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">
+    <property name="config">
+        <bean class="com.google.code.kaptcha.util.Config">
+            <constructor-arg>
+                <props>
+                    <prop key="kaptcha.border">no</prop><!-- 是否有边框 -->
+                    <prop key="kaptcha.noise.color">25,25,25</prop><!-- 干扰线颜色 -->
+                    <prop key="kaptcha.obscurificator.impl">com.google.code.kaptcha.impl.ShadowGimpy</prop>
+                    <prop key="kaptcha.image.width">140</prop>
+                    <prop key="kaptcha.image.height">40</prop>
+                    <prop key="kaptcha.textproducer.char.string">AZWSXEDCRFVTGBYHNUJMIKLP23456789</prop>
+                    <prop key="kaptcha.textproducer.font.color">4,14,156</prop><!-- 验证码字体颜色 -->
+                    <prop key="kaptcha.textproducer.font.size">36</prop><!-- 验证码字体大小 -->
+                    <prop key="kaptcha.session.key">code</prop>
+                    <prop key="kaptcha.textproducer.char.length">5</prop><!-- 验证码个数 -->
+                    <prop key="kaptcha.textproducer.font.names">宋体,楷体,微软雅黑</prop>
+                </props>
+            </constructor-arg>
+        </bean>
+    </property>
+</bean>
+
+
+
+
 </beans>

@@ -7,18 +7,24 @@ public class Client {
 	private String client_phone;
 	private Double client_money;
 	private String client_ps;
+	private String path;
+	
 	public Client() {
 		super();
 	}
-
-	public Client(String client_id, String client_name, String client_phone, Double client_money, String client_ps) {
+	
+	public Client(String client_id, String client_name, String client_phone, Double client_money, String client_ps,
+			String path) {
 		super();
 		this.client_id = client_id;
 		this.client_name = client_name;
 		this.client_phone = client_phone;
 		this.client_money = client_money;
 		this.client_ps = client_ps;
+		this.path = path;
 	}
+
+
 
 	public int getId() {
 		return id;
@@ -67,11 +73,22 @@ public class Client {
 	public void setClient_money(Double client_money) {
 		this.client_money = client_money;
 	}
+ 
+	
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
 
 	@Override
 	public String toString() {
 		return "Client [id=" + id + ", client_id=" + client_id + ", client_name=" + client_name + ", client_phone="
-				+ client_phone + ", client_money=" + client_money + ", client_ps=" + client_ps + "]";
+				+ client_phone + ", client_money=" + client_money + ", client_ps=" + client_ps + ", path=" + path + "]";
 	}
+
+    
 
 }
