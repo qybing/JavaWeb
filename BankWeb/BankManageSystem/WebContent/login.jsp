@@ -49,9 +49,12 @@
 		 <form action="teller/login.do" method="post" id="adminform">
 		 	管理员用户名：<input type="text" name="username"><br/> 
 		 	管理员用户名：<input type="text" name="password"><br/> 
+		 	验证码：<img src="image"onclick="imgclick()" id="checkimg" height="50" width="120"/><br>看不清？点击图片换一张<br>
+		 	请输入上面的图片中的字符：<input type="text" name="inputcheckcode" id="inputcheckcode"><br>
+		 	
 		 	<br>${error}<br>
-		 	1周记住密码<input type="checkbox" name="remember">
-		 	<input type="submit" value="验证">
+		 	<input type="submit" value="验证" onclick="return formsubmitclick()"><br>
+
 		 </form>
 </div>
   <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -65,5 +68,44 @@
 </div>
 
  <hr/>
+ <script type="text/javascript">
+ function formsubmitclick(){
+		// 如果本方法返回true，会继续提交表单，如果返回fasle，则不提交表单
+		//判断图片中的验证码和用户输入的是否一致，如果一致，要返回true。如果不一致，返回false */
+		var userinput=document.getElementById("inputcheckcode").value;
+		//var checkcode="${sessionScope.checkcode}";
+		var checkcode="";
+		$.ajax({
+			url:"GetCode.do",
+			type:"post",
+			dataType:"text",
+			success:function(result){
+				var form =$("#adminform");
+				if(result==userinput){
+					//相等了要提交表单
+					form.submit();
+				}else{
+					alert("验证码输入不正确请重新输入");
+				}
+				//checkcode=result;
+			}
+		});
+		return false;
+	}
+
+	function imgclick(){
+		//获取img对象
+		var img=$("#checkimg");
+		img.attr('src','getImgCode.do?'+new Date().getTime()+Math.random())
+		
+	}
+ 
+ 
+ 
+ 	
+ 
+ 
+ 
+ </script>
 </body>
 </html>

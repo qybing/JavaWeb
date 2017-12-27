@@ -15,8 +15,8 @@ public class LoginInterceptor implements HandlerInterceptor {
 		String  url = request.getRequestURI();
         System.out.println("======================");
         System.out.println("url:"+url);
-        //如果是登录提交地址，则放行
-        if (url.indexOf("login.do")>=0){
+        //查找url是否能找到
+        if (url.contains("login.do")||url.contains("GetCode")||url.contains("getImgCode")){
             return  true;
         }
         Object teller = request.getSession().getAttribute("teller");
@@ -27,6 +27,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         }
         request.getRequestDispatcher("/error.jsp").forward(request,response);
         return false;
+		/*return true;*/
 	}
 
 	@Override

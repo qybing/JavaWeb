@@ -1,7 +1,5 @@
 package com.bank.untils;
 
-
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -14,17 +12,17 @@ import javax.imageio.ImageIO;
 
 public class CreateImageCode {
 
-	// å›¾ç‰‡çš„å®½åº¦ã€‚
+	// Í¼Æ¬µÄ¿í¶È¡£
 	private int width = 160;
-	// å›¾ç‰‡çš„é«˜åº¦ã€‚
+	// Í¼Æ¬µÄ¸ß¶È¡£
 	private int height = 40;
-	// éªŒè¯ç å­—ç¬¦ä¸ªæ•°
+	// ÑéÖ¤Âë×Ö·û¸öÊı
 	private int codeCount = 4;
-	// éªŒè¯ç å¹²æ‰°çº¿æ•°
+	// ÑéÖ¤Âë¸ÉÈÅÏßÊı
 	private int lineCount = 20;
-	// éªŒè¯ç 
+	// ÑéÖ¤Âë
 	private String code = null;
-	// éªŒè¯ç å›¾ç‰‡Buffer
+	// ÑéÖ¤ÂëÍ¼Æ¬Buffer
 	private BufferedImage buffImg = null;
 	Random random = new Random();
 
@@ -53,26 +51,26 @@ public class CreateImageCode {
 		creatImage();
 	}
 
-	// ç”Ÿæˆå›¾ç‰‡
+	// Éú³ÉÍ¼Æ¬
 	private void creatImage() {
-		int fontWidth = width / codeCount;// å­—ä½“çš„å®½åº¦
-		int fontHeight = height - 5;// å­—ä½“çš„é«˜åº¦
+		int fontWidth = width / codeCount;// ×ÖÌåµÄ¿í¶È
+		int fontHeight = height - 5;// ×ÖÌåµÄ¸ß¶È
 		int codeY = height - 8;
 
-		// å›¾åƒbuffer
+		// Í¼Ïñbuffer
 		buffImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		Graphics g = buffImg.getGraphics();
 		// Graphics2D g = buffImg.createGraphics();
-		// è®¾ç½®èƒŒæ™¯è‰²
+		// ÉèÖÃ±³¾°É«
 		g.setColor(getRandColor(200, 250));
 		g.fillRect(0, 0, width, height);
 
-		// è®¾ç½®å­—ä½“
+		// ÉèÖÃ×ÖÌå
 		// Font font1 = getFont(fontHeight);
 		Font font = new Font("Fixedsys", Font.BOLD, fontHeight);
 		g.setFont(font);
 
-		// è®¾ç½®å¹²æ‰°çº¿
+		// ÉèÖÃ¸ÉÈÅÏß
 		for (int i = 0; i < lineCount; i++) {
 			int xs = random.nextInt(width);
 			int ys = random.nextInt(height);
@@ -82,8 +80,8 @@ public class CreateImageCode {
 			g.drawLine(xs, ys, xe, ye);
 		}
 
-		// æ·»åŠ å™ªç‚¹
-		float yawpRate = 0.01f;// å™ªå£°ç‡
+		// Ìí¼ÓÔëµã
+		float yawpRate = 0.01f;// ÔëÉùÂÊ
 		int area = (int) (yawpRate * width * height);
 		for (int i = 0; i < area; i++) {
 			int x = random.nextInt(width);
@@ -92,20 +90,20 @@ public class CreateImageCode {
 			buffImg.setRGB(x, y, random.nextInt(255));
 		}
 
-		String str1 = randomStr(codeCount);// å¾—åˆ°éšæœºå­—ç¬¦
+		String str1 = randomStr(codeCount);// µÃµ½Ëæ»ú×Ö·û
 		this.code = str1;
 		for (int i = 0; i < codeCount; i++) {
 			String strRand = str1.substring(i, i + 1);
 			g.setColor(getRandColor(1, 255));
 			// g.drawString(a,x,y);
-			// aä¸ºè¦ç”»å‡ºæ¥çš„ä¸œè¥¿ï¼Œxå’Œyè¡¨ç¤ºè¦ç”»çš„ä¸œè¥¿æœ€å·¦ä¾§å­—ç¬¦çš„åŸºçº¿ä½äºæ­¤å›¾å½¢ä¸Šä¸‹æ–‡åæ ‡ç³»çš„ (x, y) ä½ç½®å¤„
+			// aÎªÒª»­³öÀ´µÄ¶«Î÷£¬xºÍy±íÊ¾Òª»­µÄ¶«Î÷×î×ó²à×Ö·ûµÄ»ùÏßÎ»ÓÚ´ËÍ¼ĞÎÉÏÏÂÎÄ×ø±êÏµµÄ (x, y) Î»ÖÃ´¦
 
 			g.drawString(strRand, i * fontWidth + 3, codeY);
 		}
 
 	}
 
-	// å¾—åˆ°éšæœºå­—ç¬¦
+	// µÃµ½Ëæ»ú×Ö·û
 	private String randomStr(int n) {
 		String str1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
 		String str2 = "";
@@ -118,8 +116,8 @@ public class CreateImageCode {
 		return str2;
 	}
 
-	// å¾—åˆ°éšæœºé¢œè‰²
-	private Color getRandColor(int fc, int bc) {// ç»™å®šèŒƒå›´è·å¾—éšæœºé¢œè‰²
+	// µÃµ½Ëæ»úÑÕÉ«
+	private Color getRandColor(int fc, int bc) {// ¸ø¶¨·¶Î§»ñµÃËæ»úÑÕÉ«
 		if (fc > 255)
 			fc = 255;
 		if (bc > 255)
@@ -131,7 +129,7 @@ public class CreateImageCode {
 	}
 
 	/**
-	 * äº§ç”Ÿéšæœºå­—ä½“
+	 * ²úÉúËæ»ú×ÖÌå
 	 */
 	private Font getFont(int size) {
 		Random random = new Random();
@@ -144,7 +142,7 @@ public class CreateImageCode {
 		return font[random.nextInt(5)];
 	}
 
-	// æ‰­æ›²æ–¹æ³•
+	// Å¤Çú·½·¨
 	private void shear(Graphics g, int w1, int h1, Color color) {
 		shearX(g, w1, h1, color);
 		shearY(g, w1, h1, color);
@@ -196,6 +194,7 @@ public class CreateImageCode {
 
 	}
 
+	//½«Éú³ÉµÄÍ¼Æ¬Ğ´»Ø
 	public void write(OutputStream sos) throws IOException {
 		ImageIO.write(buffImg, "png", sos);
 		sos.close();
